@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三角洲行动 · 干员性格匹配测试</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        .font-display {
+            font-family: 'Rajdhani', sans-serif;
+        }
+        .bg-primary {
+            background: linear-gradient(180deg, #0d1117 0%, #161b22 100%);
+        }
+        .card-bg {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .option-btn {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .option-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        .option-btn.selected {
+            background: linear-gradient(135deg, #4a7c59 0%, #2d5a3f 100%);
+            border-color: transparent;
+        }
+        .progress-bar {
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #4a7c59 0%, #2d5a3f 100%);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(74, 124, 89, 0.3);
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        .section-divider {
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, #4a7c59 0%, #c9a84c 100%);
+        }
+        .result-type-card {
+            transition: all 0.4s ease;
+        }
+        .result-type-card:hover {
+            transform: translateY(-4px);
+        }
+        .operator-emblem {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1a3a2a 0%, #0d1f15 100%);
+            border: 2px solid rgba(74, 124, 89, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-primary text-white relative overflow-x-hidden">
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-20 left-20 w-96 h-96 rounded-full bg-green-700/10 blur-3xl"></div>
+        <div class="absolute bottom-20 right-20 w-96 h-96 rounded-full bg-amber-600/10 blur-3xl"></div>
+    </div>
+
+    <div class="min-h-screen flex items-center justify-center p-4 md:p-8 relative z-10">
+        
+        <!-- Welcome Page -->
+        <div id="welcomePage" class="w-full max-w-2xl">
+            <div class="card-bg rounded-3xl p-8 md:p-16 text-center animate-fadeInUp">
+                <div class="section-divider mx-auto mb-8"></div>
+                <h1 class="font-display text-3xl md:text-5xl font-semibold mb-4 tracking-wide">
+                    Delta Force · Operator Match
+                    <span class="block text-lg md:text-2xl text-gray-400 font-normal mt-2">（三角洲行动 · 干员性格匹配测试）</span>
+                </h1>
+                <p class="text-gray-400 text-base md:text-lg mb-10 leading-relaxed max-w-lg mx-auto">
+                    通过三十二道精心设计的题目，从八个维度评估你的战场性格，为你匹配最契合的三角洲行动干员
+                </p>
+                
+                <div class="bg-white/5 rounded-2xl p-6 md:p-8 mb-10 text-left border border-white/5">
+                    <h3 class="text-sm uppercase tracking-widest text-gray-400 mb-6">Test Description <span class="text-gray-500">（测试说明）</span></h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start">
+                            <span class="text-gray-500 mr-3 mt-0.5">01</span>
+                            <span class="text-sm leading-relaxed">共三十二道题目，每道题四个选项</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-gray-500 mr-3 mt-0.5">02</span>
+                            <span class="text-sm leading-relaxed">请根据你在游戏中的真实偏好和行为习惯选择</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-gray-500 mr-3 mt-0.5">03</span>
+                            <span class="text-sm leading-relaxed">从八个维度评估你的战场性格</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-gray-500 mr-3 mt-0.5">04</span>
+                            <span class="text-sm leading-relaxed">完成测试后匹配最适合你的三角洲干员</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <button onclick="startQuiz()" class="btn-primary text-white font-medium py-4 px-12 rounded-full text-base tracking-wide">
+                    Begin Test <span class="text-white/70">（开始测试）</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Quiz Page -->
+        <div id="quizPage" class="w-full max-w-2xl hidden">
+            <div class="card-bg rounded-3xl p-6 md:p-10 animate-fadeInUp">
+                <div class="mb-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs uppercase tracking-widest text-gray-400" id="categoryLabel">Combat Style</span>
+                        <span class="text-sm text-gray-300" id="questionNumber">01 / 32</span>
+                    </div>
+                    <div class="h-1 bg-white/10 rounded-full overflow-hidden">
+                        <div id="progressBar" class="progress-bar h-full bg-gradient-to-r from-green-600 to-amber-500 rounded-full" style="width: 3.125%"></div>
+                    </div>
+                </div>
+
+                <div id="questionContainer"></div>
+
+                <div class="flex justify-between mt-10">
+                    <button id="prevBtn" onclick="prevQuestion()" class="px-6 py-3 rounded-full border border-white/20 text-gray-300 text-sm hover:bg-white/5 transition-all disabled:opacity-30 disabled:cursor-not-allowed" disabled>
+                        Previous（上一题）
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Page -->
+        <div id="resultPage" class="w-full max-w-4xl hidden">
+            <div class="animate-fadeInUp" id="resultContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            // 维度1：作战风格 (Combat Style)
+            { id: 1, category: "作战风格 (Combat Style)", question: "在游戏中面对敌人时，你更倾向于？", options: [{ text: "主动出击，正面突破", score: 4 }, { text: "寻找有利位置后发起进攻", score: 3 }, { text: "先观察敌人动向再决定行动", score: 2 }, { text: "避开正面冲突，寻找侧翼机会", score: 1 }] },
+            { id: 2, category: "作战风格 (Combat Style)", question: "队伍陷入劣势时，你会？", options: [{ text: "带头冲锋，试图扭转局面", score: 4 }, { text: "鼓励队友，组织反击", score: 3 }, { text: "冷静分析局势，寻找突破口", score: 2 }, { text: "优先保护队友安全撤离", score: 1 }] },
+            { id: 3, category: "作战风格 (Combat Style)", question: "你更喜欢哪种武器类型？", options: [{ text: "冲锋枪/霰弹枪，近距离爆发", score: 4 }, { text: "突击步枪，中距离全能", score: 3 }, { text: "精确射手步枪，精准打击", score: 2 }, { text: "狙击枪，远距离观察与支援", score: 1 }] },
+            { id: 4, category: "作战风格 (Combat Style)", question: "在战场上，你的首要目标是什么？", options: [{ text: "消灭尽可能多的敌人", score: 4 }, { text: "完成团队战术目标", score: 3 }, { text: "获取关键情报和信息", score: 2 }, { text: "确保队友安全存活", score: 1 }] },
+            
+            // 维度2：团队协作 (Teamwork)
+            { id: 5, category: "团队协作 (Teamwork)", question: "你理想的团队角色是？", options: [{ text: "冲锋在前的突破手", score: 4 }, { text: "灵活策应的多面手", score: 3 }, { text: "提供情报的侦察位", score: 2 }, { text: "后方支援的医疗兵", score: 1 }] },
+            { id: 6, category: "团队协作 (Teamwork)", question: "队友犯错导致失误时，你会？", options: [{ text: "直接指出问题，要求改进", score: 4 }, { text: "鼓励队友，一起分析原因", score: 3 }, { text: "默默调整自己的策略来弥补", score: 2 }, { text: "没关系，下次注意就好", score: 1 }] },
+            { id: 7, category: "团队协作 (Teamwork)", question: "分配战利品/资源时，你倾向于？", options: [{ text: "先到先得，各凭本事", score: 4 }, { text: "按贡献分配", score: 3 }, { text: "按需求分配", score: 2 }, { text: "优先给最需要的队友", score: 1 }] },
+            { id: 8, category: "团队协作 (Teamwork)", question: "当团队意见不统一时，你会？", options: [{ text: "坚持自己的方案，据理力争", score: 4 }, { text: "提出折中方案，协调各方", score: 3 }, { text: "听取多数人意见，随大流", score: 2 }, { text: "服从团队决定，即使不太同意", score: 1 }] },
+            
+            // 维度3：决策方式 (Decision Making)
+            { id: 9, category: "决策方式 (Decision Making)", question: "面对突发情况，你通常？", options: [{ text: "凭直觉快速反应", score: 4 }, { text: "快速评估后做出决定", score: 3 }, { text: "收集更多信息后再行动", score: 2 }, { text: "先确保自身安全再考虑下一步", score: 1 }] },
+            { id: 10, category: "决策方式 (Decision Making)", question: "制定作战计划时，你更看重？", options: [{ text: "速度和效率", score: 4 }, { text: "灵活性和应变空间", score: 3 }, { text: "情报的准确性和完整性", score: 2 }, { text: "安全性和容错率", score: 1 }] },
+            { id: 11, category: "决策方式 (Decision Making)", question: "选择突击路线时，你倾向于？", options: [{ text: "最短路径，直接快速", score: 4 }, { text: "平衡速度与安全的路线", score: 3 }, { text: "绕远路但更安全稳妥", score: 2 }, { text: "跟随队友的路线走", score: 1 }] },
+            { id: 12, category: "决策方式 (Decision Making)", question: "面对一个高风险高回报的战术，你的态度是？", options: [{ text: "毫不犹豫，富贵险中求", score: 4 }, { text: "权衡利弊后可能尝试", score: 3 }, { text: "需要充分准备才会考虑", score: 2 }, { text: "风险太大，不值得冒险", score: 1 }] },
+            
+            // 维度4：压力应对 (Stress Response)
+            { id: 13, category: "压力应对 (Stress Response)", question: "在高压环境下（如决赛圈），你的表现是？", options: [{ text: "越战越勇，肾上腺素飙升", score: 4 }, { text: "保持正常水平发挥", score: 3 }, { text: "更加谨慎，步步为营", score: 2 }, { text: "容易紧张，需要队友支持", score: 1 }] },
+            { id: 14, category: "压力应对 (Stress Response)", question: "连续失败后，你会？", options: [{ text: "更加激进，一定要赢回来", score: 4 }, { text: "调整心态，继续尝试", score: 3 }, { text: "暂停休息，分析失败原因", score: 2 }, { text: "需要队友安慰和鼓励", score: 1 }] },
+            { id: 15, category: "压力应对 (Stress Response)", question: "在时间紧迫的情况下，你倾向于？", options: [{ text: "快速行动，哪怕有一定风险", score: 4 }, { text: "有所取舍，抓住重点", score: 3 }, { text: "按计划执行，不受干扰", score: 2 }, { text: "请求队友帮助或延长时间", score: 1 }] },
+            { id: 16, category: "压力应对 (Stress Response)", question: "面对未知区域，你的态度是？", options: [{ text: "第一个进入探索", score: 4 }, { text: "等队友一起进入", score: 3 }, { text: "先用侦察手段探查再决定", score: 2 }, { text: "尽量避免进入未知区域", score: 1 }] },
+            
+            // 维度5：沟通方式 (Communication)
+            { id: 17, category: "沟通方式 (Communication)", question: "在团队语音中，你通常是？", options: [{ text: "指挥者，主导沟通", score: 4 }, { text: "积极发言，分享信息", score: 3 }, { text: "偶尔报点，简洁明了", score: 2 }, { text: "安静听指挥，很少说话", score: 1 }] },
+            { id: 18, category: "沟通方式 (Communication)", question: "当你不认同队友的战术时，你会？", options: [{ text: "直接打断并提出不同意见", score: 4 }, { text: "等队友说完再提出建议", score: 3 }, { text: "委婉地表达自己的看法", score: 2 }, { text: "不说什么，按队友说的做", score: 1 }] },
+            { id: 19, category: "沟通方式 (Communication)", question: "夸赞队友时，你倾向于？", options: [{ text: "大声喊「Nice！」「牛！」", score: 4 }, { text: "具体指出队友哪里做得好", score: 3 }, { text: "简单说一句「打得好」", score: 2 }, { text: "心里认可，不太说出口", score: 1 }] },
+            { id: 20, category: "沟通方式 (Communication)", question: "在陌生人队伍中，你会？", options: [{ text: "主动破冰，活跃气氛", score: 4 }, { text: "正常交流，配合战术", score: 3 }, { text: "先观察团队氛围再决定", score: 2 }, { text: "保持沉默，专注游戏", score: 1 }] },
+            
+            // 维度6：动机驱动 (Motivation)
+            { id: 21, category: "动机驱动 (Motivation)", question: "对你来说，游戏最大的乐趣在于？", options: [{ text: "击败对手，获得胜利的快感", score: 4 }, { text: "展现个人技术，获得认可", score: 3 }, { text: "探索战术和策略的深度", score: 2 }, { text: "和朋友一起玩的快乐", score: 1 }] },
+            { id: 22, category: "动机驱动 (Motivation)", question: "你更看重游戏中的？", options: [{ text: "K/D比和排名", score: 4 }, { text: "个人技术的提升", score: 3 }, { text: "战术理解和策略深度", score: 2 }, { text: "队友之间的配合和友谊", score: 1 }] },
+            { id: 23, category: "动机驱动 (Motivation)", question: "当个人表现和团队胜利冲突时，你会？", options: [{ text: "优先保证个人表现", score: 4 }, { text: "尽量兼顾，但偏重个人", score: 3 }, { text: "尽量兼顾，但偏重团队", score: 2 }, { text: "个人表现不重要，团队赢就好", score: 1 }] },
+            { id: 24, category: "动机驱动 (Motivation)", question: "你更愿意花时间研究什么？", options: [{ text: "枪法和身法技巧", score: 4 }, { text: "地图和战术配合", score: 3 }, { text: "敌人行为模式和情报收集", score: 2 }, { text: "如何更好地辅助队友", score: 1 }] },
+            
+            // 维度7：适应性 (Adaptability)
+            { id: 25, category: "适应性 (Adaptability)", question: "当战术被打乱时，你会？", options: [{ text: "随机应变，即兴发挥", score: 4 }, { text: "快速调整策略", score: 3 }, { text: "稳住阵脚，先观望局势", score: 2 }, { text: "等待指挥的新指令", score: 1 }] },
+            { id: 26, category: "适应性 (Adaptability)", question: "换用不熟悉的武器或干员时，你？", options: [{ text: "直接上手，边用边学", score: 4 }, { text: "快速适应，很快上手", score: 3 }, { text: "需要练习一段时间", score: 2 }, { text: "比较困难，需要很长时间", score: 1 }] },
+            { id: 27, category: "适应性 (Adaptability)", question: "面对不同类型的对手，你会？", options: [{ text: "以不变应万变，用自己最强的方式", score: 4 }, { text: "根据对手风格微调策略", score: 3 }, { text: "针对性地研究对手弱点", score: 2 }, { text: "更依赖队友来应对", score: 1 }] },
+            { id: 28, category: "适应性 (Adaptability)", question: "地图更新后，你的反应是？", options: [{ text: "第一时间探索新内容", score: 4 }, { text: "正常游玩，逐渐熟悉", score: 3 }, { text: "先看攻略再上手", score: 2 }, { text: "等别人研究透了再学", score: 1 }] },
+            
+            // 维度8：价值观 (Values)
+            { id: 29, category: "价值观 (Values)", question: "你认为战场上最重要的品质是？", options: [{ text: "勇气和胆识", score: 4 }, { text: "技术和能力", score: 3 }, { text: "智慧和策略", score: 2 }, { text: "信任和忠诚", score: 1 }] },
+            { id: 30, category: "价值观 (Values)", question: "你如何定义「胜利」？", options: [{ text: "碾压对手，大获全胜", score: 4 }, { text: "发挥出色，无愧于心", score: 3 }, { text: "战术执行到位，配合默契", score: 2 }, { text: "全员安全撤离/存活", score: 1 }] },
+            { id: 31, category: "价值观 (Values)", question: "遇到实力远不如自己的对手，你会？", options: [{ text: "全力碾压，享受胜利", score: 4 }, { text: "正常发挥，尊重对手", score: 3 }, { text: "适当放水，给对手体验", score: 2 }, { text: "愿意指导对方提高", score: 1 }] },
+            { id: 32, category: "价值观 (Values)", question: "你希望自己在团队中被记住为？", options: [{ text: "最勇猛的战士", score: 4 }, { text: "最可靠的核心", score: 3 }, { text: "最有智慧的参谋", score: 2 }, { text: "最值得信赖的队友", score: 1 }] }
+        ];
+
+        const resultTypes = [
+            {
+                min: 116, max: 128, type: "威龙", typeCN: "无畏先锋型",
+                role: "突击",
+                realName: "王宇昊",
+                emblem: "&#x1F432;",
+                description: "你是一个天生的冲锋者，拥有无畏的勇气和极强的进取心。正如威龙——这位前舰载战斗机飞行员，你敢于在关键时刻做出大胆决策，勇往直前。你的身体素质、反应能力和信念感都是顶尖水准，在高压环境下反而越战越勇。你喜欢掌握主动权，不甘于平庸，总是追求更高的操作上限。",
+                operatorInfo: "威龙（王宇昊），突击兵种，GTI特战干员。曾接受区别于常规作战人员的特殊训练，掌握单兵喷气机动装备。核心技能包括动力喷气背包（短距高速冲刺）、虎蹲脉冲炮（范围震荡伤害）和磁吸C4炸弹（大范围爆破破点）。被动技能「轻量化机甲」提供常驻移速提升与高处坠落伤害减免。",
+                suitablePartners: ["红狼（全能均衡型）", "蜂医（团队守护型）", "露娜（策略侦察型）"],
+                unsuitablePartners: ["骇爪（冷静技术型）", "蝶（温柔坚韧型）"],
+                advice: [
+                    "冲锋时注意与队友保持协同，不要过于深入敌阵",
+                    "学会适当收敛锋芒，有时以退为进是更好的选择",
+                    "多关注队友状态，团队胜利比个人数据更重要",
+                    "在操作之余也培养战术意识，提升大局观"
+                ]
+            },
+            {
+                min: 104, max: 115, type: "红狼", typeCN: "全能均衡型",
+                role: "突击",
+                realName: "凯·希尔瓦",
+                emblem: "&#x1F43A;",
+                description: "你是一个全能型的战士，各方面能力均衡且出色。正如红狼——这位中东前线特种突击老兵，你在任何场景下都能稳定发挥，是团队中最可靠的核心力量。你既有冲锋陷阵的勇气，也有冷静判断的智慧，能根据局势灵活调整策略。你适应性强，无论面对什么情况都能从容应对。",
+                operatorInfo: "红狼（凯·希尔瓦），突击兵种，全能均衡型干员，S9赛季T0通用之选。具备常驻移速、开镜、滑铲全方位加成，手感丝滑零门槛。战术手炮近距离爆发力强，击杀后可刷新全部被动，滚雪球能力顶尖。通吃摸金、高危攻坚、排位冲分所有场景，是版本最稳定的万能突击位。",
+                suitablePartners: ["威龙（无畏先锋型）", "露娜（策略侦察型）", "回响（沉稳洞察型）"],
+                unsuitablePartners: ["暂无（适配性极强）"],
+                advice: [
+                    "在万金油的基础上，可以尝试发展一个专精方向",
+                    "作为团队核心，多承担指挥和协调的职责",
+                    "善于利用你的全面性，在团队需要时补位",
+                    "保持对新战术和新玩法的学习热情"
+                ]
+            },
+            {
+                min: 92, max: 103, type: "乌鲁鲁", typeCN: "强硬破阵型",
+                role: "工程/突击",
+                realName: "大卫·费莱尔",
+                emblem: "&#x1F4A3;",
+                description: "你是一个直来直去、重火力至上的硬汉。正如乌鲁鲁——这位来自G.T.I.大洋洲分部的重火力专家，你相信力量就是真理，正面碾压是最有效的战术。你性格强硬、不拘小节，喜欢简单直接的方式解决问题。在团队中，你是攻坚的矛头，面对任何防御阵地都能找到突破口。",
+                operatorInfo: "乌鲁鲁（大卫·费莱尔），工程/突击兵种，阵地战核心。191cm/118kg的魁梧体型彰显「移动堡垒」特质。核心装备包括速凝掩体（快速构建战术挡板）和巡飞弹（大范围爆破）。专属反坦克火箭筒可高额范围爆炸伤害，直接摧毁敌方护盾、掩体和集群敌人。",
+                suitablePartners: ["蜂医（团队守护型）", "红狼（全能均衡型）", "露娜（策略侦察型）"],
+                unsuitablePartners: ["骇爪（冷静技术型）", "蝶（温柔坚韧型）"],
+                advice: [
+                    "学会在火力压制之外，也考虑战术层面的配合",
+                    "直率是你的优点，但有时适当委婉能更好地沟通",
+                    "注意保护自己的位置，机动性差是你的短板",
+                    "在不需要攻坚时，可以尝试辅助队友的战术"
+                ]
+            },
+            {
+                min: 80, max: 91, type: "露娜", typeCN: "策略侦察型",
+                role: "侦察",
+                realName: "露娜（代号夜莺）",
+                emblem: "&#x1F319;",
+                description: "你是一个心思缜密、善于策略规划的人。正如露娜——这位阿萨拉卫队退役情报探员，你擅长从全局角度观察战场，在行动前收集足够的信息，制定周密的计划。你不会冲动行事，而是通过侦察和分析找到最优解。你的标记能力让队友受益，是团队中不可或缺的情报中枢。",
+                operatorInfo: "露娜（代号夜莺），侦察兵种，团队侦察支援核心。核心大招「侦察箭矢」最大飞行200米，探测半径80米，可标记无掩体敌人并区分真人（橙色）与人机（红色），全队共享标记。电击箭矢生成5米电流场持续伤害并减速。被动技能「敌情分析」使任意命中后目标穿透掩体标记4秒。",
+                suitablePartners: ["红狼（全能均衡型）", "威龙（无畏先锋型）", "回响（沉稳洞察型）"],
+                unsuitablePartners: ["无名（隐身突袭型）"],
+                advice: [
+                    "在侦察的同时，也要提升自己的正面作战能力",
+                    "不要过度依赖信息，有时需要相信直觉",
+                    "多与队友沟通分享情报，最大化你的价值",
+                    "在关键时刻也要敢于做出果断决策"
+                ]
+            },
+            {
+                min: 68, max: 79, type: "回响", typeCN: "沉稳洞察型",
+                role: "侦察",
+                realName: "卢克·埃弗利",
+                emblem: "&#x1F30A;",
+                description: "你是一个沉稳冷静、善于深度思考的人。正如回响——这位前海军声呐专家，你拥有超乎常人的感知力和耐心。你不急于行动，而是用心倾听、观察和分析，在看似平静的表面下捕捉每一个细微的线索。你的沉稳不是被动，而是一种以静制动的智慧。在团队中，你是那个能看透全局的人。",
+                operatorInfo: "回响（卢克·埃弗利），侦察兵种，S9赛季新增声学侦察干员。前水下声学情报专家，将潜艇声呐技术改良为陆地侦察装备。被动「声纹感知增幅」扩大全图声音拾取范围，自动标记发声敌人。战术「次声波干扰器」制造5米共振场减速+视野模糊。大招「回声探测器」周期性区域扫描标记所有移动射击目标。",
+                suitablePartners: ["露娜（策略侦察型）", "红狼（全能均衡型）", "蜂医（团队守护型）"],
+                unsuitablePartners: ["威龙（无畏先锋型）", "乌鲁鲁（强硬破阵型）"],
+                advice: [
+                    "你的沉稳是优势，但也需要适时加快决策节奏",
+                    "多与队友分享你的洞察，让信息发挥更大价值",
+                    "在团队需要时，也要敢于担当指挥角色",
+                    "尝试在安全范围内承担更多主动权"
+                ]
+            },
+            {
+                min: 56, max: 67, type: "骇爪", typeCN: "冷静技术型",
+                role: "侦察",
+                realName: "麦晓雯",
+                emblem: "&#x1F5A5;",
+                description: "你是一个冷静理性、技术至上的独行侠。正如骇爪麦晓雯——这位G.T.I.电子情报专员，你相信数据和逻辑的力量，善于运用技术手段解决问题。你话不多，但每一句都切中要害。你享受独自钻研和深度思考的过程，在复杂的信息环境中总能找到关键线索。你的专注和精准令人敬畏。",
+                operatorInfo: "骇爪（麦晓雯），侦察兵种，电子情报专员。擅长黑入敌方电子设备，室内地图信息战强势。核心技能包括数据飞刀（穿透掩体标记）、电子陷阱、静步无声被动。大招可造成全域电子瘫痪，屏蔽敌方雷达。在室内近距离作战中胜率高出平均19%，是室内图之王。",
+                suitablePartners: ["回响（沉稳洞察型）", "露娜（策略侦察型）", "蝶（温柔坚韧型）"],
+                unsuitablePartners: ["威龙（无畏先锋型）", "乌鲁鲁（强硬破阵型）"],
+                advice: [
+                    "多与队友沟通交流，技术再强也需要团队配合",
+                    "尝试走出舒适区，参与更多正面作战",
+                    "你的冷静在团队慌乱时是最宝贵的财富",
+                    "适当表达自己的想法，不要总是藏在心里"
+                ]
+            },
+            {
+                min: 44, max: 55, type: "蝶", typeCN: "温柔坚韧型",
+                role: "支援",
+                realName: "莉娜·范德梅尔",
+                emblem: "&#x1F98B;",
+                description: "你是一个温柔而坚韧的人，内心充满关怀与责任感。正如蝶——这位G.T.I.医疗救援部的医学专家，你始终秉持「无论在怎样的绝境中都不放弃拯救他人」的信念。你的温柔不是软弱，而是一种以柔克刚的力量。在团队中，你是大家的精神支柱，在最危急的时刻总能带来希望。",
+                operatorInfo: "蝶（莉娜·范德梅尔），支援兵种，S8赛季医疗革命引领者。专攻临床医学与药物研究，拥有极高的医学专业素养。核心大招「蝶式救援无人机」：远程注射+近距除颤两步救援，期间ADS无人机主动拦截伤害。纳米医疗粉尘可追踪治疗队友。被动技能延长队友倒地和濒死倒计时至4分半，团队救援成功率提升41%。",
+                suitablePartners: ["蜂医（团队守护型）", "红狼（全能均衡型）", "骇爪（冷静技术型）"],
+                unsuitablePartners: ["威龙（无畏先锋型）", "乌鲁鲁（强硬破阵型）"],
+                advice: [
+                    "你的温柔是力量，但也要学会保护自己",
+                    "在照顾他人的同时，不要忽略自己的需求",
+                    "尝试在关键时刻果断表达自己的意见",
+                    "培养独立行动的能力，减少对队友的依赖"
+                ]
+            },
+            {
+                min: 32, max: 43, type: "蜂医", typeCN: "团队守护型",
+                role: "支援",
+                realName: "蜂医（前线随军军医）",
+                emblem: "&#x1F41D;",
+                description: "你是一个无私的守护者，将团队利益置于个人之上。正如蜂医——这位前线随军军医，你的存在就是团队安全感的来源。你不太在意个人数据和排名，队友的存活和团队的胜利才是你最大的追求。你耐心、细致、可靠，在团队最需要的时候总能挺身而出。你的奉献精神让整个团队变得更强大。",
+                operatorInfo: "蜂医，支援兵种，基础团队治疗标杆干员。长期驻守高危撤离区域，拥有最全面的团队续航能力。核心技能包括持续治疗无人机（远程治疗队友）、群体护甲修补、应急救援针（快速救援倒地队友）。大招可创造大范围回血区域，持续恢复团队血量。是新手入门支援位的最佳选择。",
+                suitablePartners: ["蝶（温柔坚韧型）", "红狼（全能均衡型）", "回响（沉稳洞察型）"],
+                unsuitablePartners: ["暂无（团队适配性极强）"],
+                advice: [
+                    "在守护团队的同时，也要提升自己的生存能力",
+                    "适当关注个人数据，提升自己的综合实力",
+                    "你的无私值得尊敬，但也要学会合理分配精力",
+                    "在团队沟通中，多表达自己的战术建议"
+                ]
+            }
+        ];
+
+        let state = { currentPage: 'welcome', currentQuestion: 0, answers: [], totalScore: 0 };
+
+        function startQuiz() {
+            state.currentPage = 'quiz';
+            state.currentQuestion = 0;
+            state.answers = [];
+            document.getElementById('welcomePage').classList.add('hidden');
+            document.getElementById('quizPage').classList.remove('hidden');
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const q = questions[state.currentQuestion];
+            document.getElementById('categoryLabel').textContent = q.category;
+            document.getElementById('questionNumber').textContent = `${q.id.toString().padStart(2, '0')} / 32`;
+            document.getElementById('progressBar').style.width = `${(q.id / 32) * 100}%`;
+            
+            const container = document.getElementById('questionContainer');
+            const existingAnswer = state.answers.find(a => a.questionId === q.id);
+            
+            container.innerHTML = `
+                <h2 class="text-xl md:text-2xl font-medium text-gray-100 mb-10 leading-relaxed">
+                    ${q.question}
+                </h2>
+                <div class="space-y-3">
+                    ${q.options.map((opt, idx) => `
+                        <button onclick="selectOption(${idx})" 
+                                class="option-btn w-full text-left p-5 rounded-xl border border-white/10 ${existingAnswer && existingAnswer.score === opt.score ? 'selected border-transparent text-white' : 'text-gray-300'} transition-all" 
+                                id="option-${idx}">
+                            <span class="inline-block w-9 h-9 rounded-full ${existingAnswer && existingAnswer.score === opt.score ? 'bg-white/20' : 'bg-white/5'} text-center leading-9 font-medium mr-4 text-sm">${String.fromCharCode(65 + idx)}</span>
+                            <span class="text-base">${opt.text}</span>
+                        </button>
+                    `).join('')}
+                </div>
+            `;
+            
+            document.getElementById('prevBtn').disabled = state.currentQuestion === 0;
+        }
+
+        function selectOption(idx) {
+            const q = questions[state.currentQuestion];
+            state.answers = state.answers.filter(a => a.questionId !== q.id);
+            state.answers.push({ questionId: q.id, score: q.options[idx].score });
+            renderQuestion();
+            setTimeout(() => {
+                nextQuestion();
+            }, 500);
+        }
+
+        function prevQuestion() {
+            if (state.currentQuestion > 0) {
+                state.currentQuestion--;
+                renderQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            const existingAnswer = state.answers.find(a => a.questionId === questions[state.currentQuestion].id);
+            if (!existingAnswer) return;
+            
+            if (state.currentQuestion < 31) {
+                state.currentQuestion++;
+                renderQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            state.totalScore = state.answers.reduce((sum, a) => sum + a.score, 0);
+            const result = resultTypes.find(r => state.totalScore >= r.min && state.totalScore <= r.max);
+            
+            state.currentPage = 'result';
+            document.getElementById('quizPage').classList.add('hidden');
+            document.getElementById('resultPage').classList.remove('hidden');
+            
+            document.getElementById('resultContainer').innerHTML = `
+                <div class="card-bg rounded-3xl overflow-hidden">
+                    <div class="bg-gradient-to-br from-green-900/50 to-amber-900/30 p-8 md:p-12 text-center border-b border-white/10">
+                        <div class="section-divider mx-auto mb-6"></div>
+                        <p class="text-xs uppercase tracking-widest text-gray-400 mb-3">Your Matched Operator</p>
+                        <div class="operator-emblem mb-4">${result.emblem}</div>
+                        <h1 class="font-display text-3xl md:text-4xl font-semibold mb-2">${result.type}</h1>
+                        <h2 class="text-xl text-gray-300 mb-2">${result.typeCN}</h2>
+                        <div class="inline-block px-4 py-1 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-400 text-sm font-medium mb-4">${result.role}兵种</div>
+                        <p class="text-sm text-gray-400">真实姓名：${result.realName}</p>
+                        <div class="text-5xl font-light mt-4 mb-2">${state.totalScore}</div>
+                        <p class="text-sm text-gray-400">Total Score（32 - 128）</p>
+                    </div>
+                    
+                    <div class="p-8 md:p-10">
+                        <div class="mb-10">
+                            <h3 class="text-xs uppercase tracking-widest text-gray-400 mb-4">Personality Analysis（性格分析）</h3>
+                            <p class="text-gray-300 leading-relaxed text-base">${result.description}</p>
+                        </div>
+
+                        <div class="mb-10">
+                            <h3 class="text-xs uppercase tracking-widest text-gray-400 mb-4">Operator Profile（干员档案）</h3>
+                            <div class="bg-white/5 rounded-xl p-6 border border-white/5">
+                                <p class="text-gray-300 leading-relaxed text-sm">${result.operatorInfo}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-10">
+                            <h3 class="text-xs uppercase tracking-widest text-gray-400 mb-4">Best Teammates（最佳搭档）</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                ${result.suitablePartners.map(p => `
+                                    <div class="result-type-card bg-green-500/10 border border-green-500/20 rounded-xl p-5 text-center">
+                                        <div class="text-sm font-medium text-green-300">${p}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        
+                        <div class="mb-10">
+                            <h3 class="text-xs uppercase tracking-widest text-gray-400 mb-4">Caution with（需要谨慎配合）</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                ${result.unsuitablePartners.map(p => `
+                                    <div class="result-type-card bg-red-500/10 border border-red-500/20 rounded-xl p-5 text-center">
+                                        <div class="text-sm font-medium text-red-300">${p}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        
+                        <div class="mb-10">
+                            <h3 class="text-xs uppercase tracking-widest text-gray-400 mb-4">Tactical Advice（战术建议）</h3>
+                            <ul class="space-y-4">
+                                ${result.advice.map((a, idx) => `
+                                    <li class="flex items-start">
+                                        <span class="text-gray-500 mr-4 mt-0.5 font-medium">${(idx + 1).toString().padStart(2, '0')}</span>
+                                        <span class="text-gray-300 text-base leading-relaxed">${a}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="text-center pt-4">
+                            <button onclick="restartQuiz()" class="btn-primary text-white font-medium py-4 px-12 rounded-full text-sm tracking-wide">
+                                Retake Test（重新测试）
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function restartQuiz() {
+            state.currentPage = 'welcome';
+            state.currentQuestion = 0;
+            state.answers = [];
+            state.totalScore = 0;
+            document.getElementById('resultPage').classList.add('hidden');
+            document.getElementById('welcomePage').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
